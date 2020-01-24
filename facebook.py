@@ -22,7 +22,7 @@ class FaceBook:
         params = {
             "fields": personal
         }
-        r = requests.get("https://graph.facebook.com/723291171360596?fields=access_token&access_token=" + personal)
+        r = requests.get("https://graph.facebook.com/"+os.getenv("fb_pageid")+"?fields=access_token&access_token=" + personal)
         print(r.text)
         return r.json()['access_token']
 
@@ -33,6 +33,6 @@ class FaceBook:
             "link": link,
             "access_token": os.getenv("access_token")
         }
-        r = requests.post("https://graph.facebook.com/v5.0/723291171360596/feed", data=params)
+        r = requests.post("https://graph.facebook.com/v5.0/"+os.getenv("fb_pageid")+"/feed", data=params)
 
         return r.text
