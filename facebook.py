@@ -22,7 +22,8 @@ class FaceBook:
         params = {
             "fields": personal
         }
-        r = requests.get("https://graph.facebook.com/"+os.getenv("fb_pageid")+"?fields=access_token&access_token=" + personal)
+        r = requests.get(
+            "https://graph.facebook.com/" + os.getenv("fb_pageid") + "?fields=access_token&access_token=" + personal)
         print(r.text)
         return r.json()['access_token']
 
@@ -33,6 +34,6 @@ class FaceBook:
             "link": link,
             "access_token": os.getenv("access_token")
         }
-        r = requests.post("https://graph.facebook.com/v5.0/"+os.getenv("fb_pageid")+"/feed", data=params)
+        r = requests.post("https://graph.facebook.com/v5.0/" + os.getenv("fb_pageid") + "/feed", data=params)
 
-        return r.text
+        return "Facebook Post is = " + r.text + "<br> The post content is " + desc + "<br><br>The Link is :<a href='" + link + "'> Jumia postlink</a>"
